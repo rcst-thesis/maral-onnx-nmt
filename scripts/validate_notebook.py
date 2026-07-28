@@ -30,6 +30,7 @@ for required_text in (
     "opset_version=18",
     "ort.InferenceSession(",
     "np.testing.assert_allclose(",
+    "onnx_target.append(next_token)",
 ):
     assert required_text in notebook_source
 
