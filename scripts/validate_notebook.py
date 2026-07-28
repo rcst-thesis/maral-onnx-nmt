@@ -13,8 +13,28 @@ notebook_path = (
 notebook = json.loads(notebook_path.read_text(encoding="utf-8"))
 
 assert notebook["nbformat"] == 4
-assert notebook["metadata"]["accelerator"] == "TPU"
+assert notebook["metadata"]["accelerator"] == "GPU"
 assert notebook["metadata"]["colab"]["include_colab_link"] is True
+
+notebook_source = "\n".join(
+    "".join(cell["source"])
+    for cell in notebook["cells"]
+)
+for required_text in (
+    "torch.cuda.is_available()",
+    'torch.amp.autocast("cuda"',
+    'torch.amp.GradScaler("cuda")',
+    "pin_memory=True",
+    "non_blocking=True",
+):
+    assert required_text in notebook_source
+
+for forbidden_text in (
+    "torch_xla",
+    "MpDeviceLoader",
+    "run_xla_epoch",
+):
+    assert forbidden_text not in notebook_source
 
 for index, cell in enumerate(notebook["cells"]):
     if cell["cell_type"] != "code":
