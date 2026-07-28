@@ -28,8 +28,12 @@ for required_text in (
     "non_blocking=True",
     "onnxscript",
     "opset_version=18",
+    "external_data=False",
+    "quantize_dynamic(",
+    "use_external_data_format=False",
     "ort.InferenceSession(",
-    "np.testing.assert_allclose(",
+    "np.testing.assert_array_equal(",
+    'output_names=["next_token"]',
     "onnx_target.append(next_token)",
 ):
     assert required_text in notebook_source
