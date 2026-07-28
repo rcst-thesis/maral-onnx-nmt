@@ -1,6 +1,6 @@
 # Maral NMT
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rcst-thesis/maral-onnx-nmt/blob/main/maral_nmt_colab.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rcst-thesis/maral-onnx-nmt/blob/main/notebooks/maral_nmt_colab.ipynb)
 
 A general-purpose, single-TPU neural machine translation trainer for
 two-column parallel corpora. It trains a shared SentencePiece tokenizer and an
@@ -28,7 +28,7 @@ model, and configuration are copied to the configured Drive output directory.
 ## Local validation
 
 ```bash
-python validate_notebook.py
+python scripts/validate_notebook.py
 ```
 
 Training requires a PyTorch/XLA TPU runtime. The notebook intentionally relies

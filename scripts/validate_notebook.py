@@ -5,7 +5,12 @@ import json
 from pathlib import Path
 
 
-notebook = json.loads(Path("maral_nmt_colab.ipynb").read_text(encoding="utf-8"))
+notebook_path = (
+    Path(__file__).resolve().parents[1]
+    / "notebooks"
+    / "maral_nmt_colab.ipynb"
+)
+notebook = json.loads(notebook_path.read_text(encoding="utf-8"))
 
 assert notebook["nbformat"] == 4
 assert notebook["metadata"]["accelerator"] == "TPU"
