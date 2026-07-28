@@ -27,6 +27,9 @@ for required_text in (
     "pin_memory=True",
     "non_blocking=True",
     "onnxscript",
+    "opset_version=18",
+    "ort.InferenceSession(",
+    "np.testing.assert_allclose(",
 ):
     assert required_text in notebook_source
 
