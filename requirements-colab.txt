@@ -1,0 +1,7 @@
+sentencepiece
+pandas
+matplotlib
+tqdm
+sacrebleu
+onnx
+onnxruntime

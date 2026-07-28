@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+checkpoints/
+data/
+models/
+*.onnx
+*.pt
+loss_curves.png
