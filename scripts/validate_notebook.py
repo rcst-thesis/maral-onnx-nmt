@@ -26,6 +26,7 @@ for required_text in (
     'torch.amp.GradScaler("cuda")',
     "pin_memory=True",
     "non_blocking=True",
+    "onnxscript",
 ):
     assert required_text in notebook_source
 
