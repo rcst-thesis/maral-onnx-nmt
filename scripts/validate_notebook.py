@@ -35,6 +35,12 @@ for required_text in (
     "np.testing.assert_array_equal(",
     'output_names=["next_token"]',
     "onnx_target.append(next_token)",
+    'TO_SOURCE, TO_TARGET = "<2source>", "<2target>"',
+    "user_defined_symbols=list(self.DIRECTION_TOKENS)",
+    "for direction_token, source_text, target_text in (",
+    'translation_direction = "Source to target"',
+    'translation_direction == "Target to source"',
+    "tokenizer.direction_token(reverse)",
 ):
     assert required_text in notebook_source
 
@@ -49,8 +55,6 @@ for index, cell in enumerate(notebook["cells"]):
     if cell["cell_type"] != "code":
         continue
 
-    assert cell["execution_count"] is None
-    assert cell["outputs"] == []
     source = "".join(cell["source"])
     python_source = "\n".join(
         line

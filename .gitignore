@@ -5,3 +5,4 @@ models/
 *.onnx
 *.pt
 loss_curves.png
+graphify-out

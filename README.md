@@ -2,7 +2,7 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rcst-thesis/maral-onnx-nmt/blob/main/notebooks/maral_nmt_colab.ipynb)
 
-Maral NMT trains a sequence-to-sequence translation model on one NVIDIA GPU.
+Maral NMT trains a bidirectional sequence-to-sequence translation model on one NVIDIA GPU.
 It accepts a parallel corpus with two columns. It exports TorchScript and a
 self-contained, dynamically quantized INT8 ONNX model for greedy mobile
 decoding.
@@ -34,9 +34,11 @@ vocabulary logits to the mobile client.
 - `tgt_tokens`: `int64[batch, target_length]`
 - `next_token`: `int64[batch]`
 
-Encode source text with `tokenizer.model`. Start the target with BOS ID `2`,
-append each `next_token`, and stop at EOS ID `3` or the configured decode limit.
-Reuse one ONNX Runtime session for all translations.
+Encode source text with `tokenizer.model`, prefixing it with `<2target>` for
+source-to-target translation or `<2source>` for target-to-source translation.
+Start the output with BOS ID `2`, append each `next_token`, and stop at EOS ID
+`3` or the configured decode limit. Both directions reuse the same tokenizer,
+ONNX model, and ONNX Runtime session.
 
 ## Validate the Notebook
 
